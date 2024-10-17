@@ -1,15 +1,32 @@
+import prisma from '../conexionDB.js';
+
+
 class TemasControlador{
     constructor(){
 
     }
-    consultar(req,res) {
-            res.json({msg: 'Consulta temas' });
+    async consultar(req,res) {
+        try{
+            const temas = await prisma.temas.findMany()
+            res.json({msg: 'Todos los',temas:temas });
+        }catch(error){
+            res.status(500).json({error: 'Error al consultar temas'});
+        }
         }
     
 
-    consultaEspecifica(req,res){
+    async consultaEspecifica(req,res){
+        try{
         const {id} = req.params;
+        const tema = prisma.temas.findUnique({
+            where: {
+                id : id,
+            },
+        })
         res.json({msg: `Consulta del tema con id ${id}` });
+    }catch(error){
+        res.status(500).json({error: `Error al consultar el id:${id}` })
+    }
     }
 
     ingresar(req,res){

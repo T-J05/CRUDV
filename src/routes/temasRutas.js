@@ -15,7 +15,7 @@ router.route("/:id")
          // obtener un tema 
         .get(temasControlador.consultaEspecifica)
         // Cracion/Actualizacion de temas
-        .put(temasControlador.actualizar)       
+        .put(temasControlador.actualizar)     
         // Eliminacion de temas
         .delete(temasControlador.borrar)
 
