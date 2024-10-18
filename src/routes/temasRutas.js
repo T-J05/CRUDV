@@ -4,14 +4,14 @@ import temasControlador from '../controlador/temasControlador.js';
 
 
 const router = express.Router();
-// enviar los temas
-router.post('/',temasControlador.ingresar)
 
 
 // obtener los temas
 router.get('/',temasControlador.consultar)
 
-router.route("/:id")
+router.route("/temacrud")
+         // crear un tema
+        .post(temasControlador.crear)
          // obtener un tema 
         .get(temasControlador.consultaEspecifica)
         // Cracion/Actualizacion de temas
