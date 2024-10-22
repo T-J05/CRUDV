@@ -5,6 +5,8 @@ class TemasControlador{
     constructor(){
 
     }
+
+
     async consultar(req,res) {
         try{
             const temas = await prisma.temas.findMany({
@@ -21,16 +23,17 @@ class TemasControlador{
 
     async consultaEspecifica(req,res){
         const {busqueda} = req.query;
-        // if (!busqueda || busqueda.trim() === ''){
-        //     return res.status(400).json({error: 'El campo tema es obligatorio'})
-        // }
+        if (!busqueda || busqueda.trim() === ''){
+            return res.status(400).json({error: 'El campo tema es obligatorio'})
+        }
       
         try{
         const tema = await prisma.temas.findMany({
             where: {
                 tema : {
-                    contains: busqueda},
-                    mode: 'insensitive' 
+                    contains: busqueda,
+                    mode: 'insensitive',
+                },
             },
             
         });
@@ -39,6 +42,7 @@ class TemasControlador{
             res.status(500).json({error: `Error al consultar el id:`,details: error.message })
         }
         }
+
 
     async crear(req,res){
         console.log(req.body)
@@ -90,6 +94,7 @@ class TemasControlador{
     
     }
 
+
     async borrar(req,res){
         const { id } = req.params;
         try {
@@ -101,6 +106,34 @@ class TemasControlador{
             res.status(500).json({ error: 'Error al borrar el tema', details: error.message });
         }
     }
+
+
+    async actualizarVotos(req, res) {
+        const { id } = req.params; 
+        
+        try {
+
+            const tema = await prisma.temas.findUnique({
+                where: { id: parseInt(id) }
+            });
+    
+            if (!tema) {
+                return res.status(404).json({ error: 'Tema no encontrado' });
+            }
+    
+            const votosActualizados = tema.votos + 1;
+    
+            const temaActualizado = await prisma.temas.update({
+                where: { id: parseInt(id) },
+                data: { votos: votosActualizados }
+            });
+    
+            res.status(200).json({ msg: 'Voto agregado con éxito', tema: temaActualizado });
+        } catch (error) {
+            res.status(500).json({ error: 'Error al actualizar los votos', details: error.message });
+        }
+    }
+    
 }
 
 export default new TemasControlador(); // Exportar una instancia de la clase

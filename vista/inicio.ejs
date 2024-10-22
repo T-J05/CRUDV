@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <H1>Vota a tu anime favorito </H1>
+  <p>Crea un tema</p>
+  <input type="text" id="nr1">
+  <input type="Text" id="nr2">
+  <button onclick="mifuncion()">Sumar</button>
+  <p id="sumando"></p>
+  <script>
+    function mifuncion(){
+      var x,y,suma,text;
+      x = document.getElementById("nr1").value;
+      y = document.getElementById("nr2").value;
+      suma = parseFloat(x)+parseFloat(y)
+      text = suma;
+
+      document.getElementById("sumando").innerHTML = text;
+    }
+  </script>
+</body>
+</html>

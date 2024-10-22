@@ -11,7 +11,7 @@ router.post('/',temasControlador.crear)
 // obtener los temas
 router.get('/',temasControlador.consultar)
          // obtener un tema 
-router.get('/:tema',temasControlador.consultaEspecifica)
+router.get('/buscar',temasControlador.consultaEspecifica)
 
 router.route("/:id")
 
