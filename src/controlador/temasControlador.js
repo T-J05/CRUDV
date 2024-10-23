@@ -14,7 +14,8 @@ class TemasControlador{
                     votos: 'desc',
                 }]
             })
-            res.render('votosrender',{temas});
+            res.render('inicio',temas)
+            
         }catch(error){
             res.status(500).json({error:'Error al consultar temas', details: error.message});
         }
@@ -62,6 +63,7 @@ class TemasControlador{
             }
             });
             res.status(201).json({msg: 'Tema creado con éxito', tema: temanew})
+            res.redirect('/temas');
         }catch(error){
             res.status(500).json({error:'Error al crear el tema', details: error.message})
         }

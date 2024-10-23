@@ -6,19 +6,18 @@ import temasControlador from '../controlador/temasControlador.js';
 const router = express.Router();
 
   // crear un tema
-router.post('/',temasControlador.crear)
+router.post('/crear',temasControlador.crear)
 
 // obtener los temas
 router.get('/',temasControlador.consultar)
-         // obtener un tema 
+
+// obtener un tema 
 router.get('/buscar',temasControlador.consultaEspecifica)
 
-router.route("/:id")
+router.put('/actualizar/:id',temasControlador.actualizar)
 
-        // Cracion/Actualizacion de temas
-        .put(temasControlador.actualizar)     
-        // Eliminacion de temas
-        .delete(temasControlador.borrar)
+router.delete('/eliminar/:id',temasControlador.borrar)
+
 
 
 // Exportacion de router

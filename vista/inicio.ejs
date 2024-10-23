@@ -6,12 +6,21 @@
   <title>Document</title>
 </head>
 <body>
-  <H1>Vota a tu anime favorito </H1>
-  <p>Crea un tema</p>
-  <input type="text" id="nr1">
-  <input type="Text" id="nr2">
-  <button onclick="mifuncion()">Sumar</button>
-  <p id="sumando"></p>
+  <h1>Vota a tu anime favorito </h1>
+  <h4>Crea un tema</h4>
+
+  <form action="/temas/crear" method="post">
+    <label for="tema">
+      Titulo del anime
+      <input type="text" id="tema" name="tema" placeholder="escriba el anime"/>
+    </label>
+    <label for="enlace">
+      Enlace
+      <input type="text" id="enlace" name="enlace" placeholder="escriba el enlace">
+    </label>
+    <button type="submit">Agregar</button>
+  </form>
+
   <script>
     function mifuncion(){
       var x,y,suma,text;

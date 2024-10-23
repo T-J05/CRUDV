@@ -6,14 +6,12 @@ const app = express();
 
 
 //configuracion
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.set('views', './vista'); 
 app.set('port',process.env.PORT || 3000);
 
 
-app.get('/',(req,res) => {
-        res.send('hola mundo')
-})
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
