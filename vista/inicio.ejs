@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+<center>
 <body>
-  <h1>Vota a tu anime favorito </h1>
+  <h1> Vota a tu anime favorito </h1>
   <h4>Crea un tema</h4>
 
   <form action="/temas/crear" method="post">
@@ -20,17 +21,33 @@
     </label>
     <button type="submit">Agregar</button>
   </form>
+  <!-- se hace un formulario al apretar el boton de editar -->
+  <form action="/temas/actualizar" method="post">
+    <label for="tema">
+      Titulo del anime
+      <input type=”hidden” id="tema" name="tema" placeholder="escriba el anime"/>
+    </label>
+    <label for="enlace">
+      Enlace
+      <input type=”hidden” id="enlace" name="enlace" placeholder="escriba el enlace">
+    </label>
+    <button type="submit">Agregar</button>
+  </form>
+ </center>
+  <center><table id="tabla-temas">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Tema</th> ANIMES
+            <th>Enlace</th> ENLACE
+            <th>Votos</th> VOTOS
+        </tr>
+    </thead>
+    <tbody>
+     
+    </tbody>
+</table> </center>
 
-  <script>
-    function mifuncion(){
-      var x,y,suma,text;
-      x = document.getElementById("nr1").value;
-      y = document.getElementById("nr2").value;
-      suma = parseFloat(x)+parseFloat(y)
-      text = suma;
-
-      document.getElementById("sumando").innerHTML = text;
-    }
-  </script>
+  <script src="/vista/inicioscrip.js"></script>
 </body>
 </html>

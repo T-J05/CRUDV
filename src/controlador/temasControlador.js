@@ -6,6 +6,19 @@ class TemasControlador{
 
     }
 
+    async inicio(req,res) {
+        try{
+            const temas = await prisma.temas.findMany({
+                orderBy:[{
+                    votos: 'desc',
+                }]
+            })
+            res.render('inicio',{temas})
+        }catch(error){
+            console.error({error: 'Error al consultar temas',details: error.message})
+            res.status(500).send({error:'Error al consultar temas', details: error.message});
+        }
+        };
 
     async consultar(req,res) {
         try{
@@ -14,10 +27,11 @@ class TemasControlador{
                     votos: 'desc',
                 }]
             })
-            res.render('inicio',temas)
-            
+            res.json(temas)
+          
         }catch(error){
-            res.status(500).json({error:'Error al consultar temas', details: error.message});
+            console.error({error: 'Error al consultar temas',details: error.message})
+            res.status(500).send({error:'Error al consultar temas', details: error.message});
         }
         };
     
@@ -62,8 +76,8 @@ class TemasControlador{
                 votos: votos || 0
             }
             });
-            res.status(201).json({msg: 'Tema creado con éxito', tema: temanew})
-            res.redirect('/temas');
+            res.redirect('/temas/inicio');
+            console.log({msg: 'Tema creado con éxito', tema: temanew})
         }catch(error){
             res.status(500).json({error:'Error al crear el tema', details: error.message})
         }
@@ -129,8 +143,9 @@ class TemasControlador{
                 where: { id: parseInt(id) },
                 data: { votos: votosActualizados }
             });
-    
-            res.status(200).json({ msg: 'Voto agregado con éxito', tema: temaActualizado });
+            
+            res.json({ id: temaActualizado.id, votos: temaActualizado.votos });
+            console.log({ msg: 'Voto agregado con éxito', tema: temaActualizado });
         } catch (error) {
             res.status(500).json({ error: 'Error al actualizar los votos', details: error.message });
         }
