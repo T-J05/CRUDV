@@ -7,6 +7,7 @@ async function obtenerTemas(){
         console.error('Error obteniendo temas', error);
     }
 };
+
 async function sumarVotos(id){
     try {
         const response = await fetch(`/temas/sumarVoto/${id}`, {
@@ -14,29 +15,47 @@ async function sumarVotos(id){
             headers: {
                 'Content-Type': 'application/json'
             }
-        });
+            
+        }
+        );
         const temas = await response.json();
-       
     }catch (error){
         console.error('Error al sumar el voto', error)
     }
 }
 
+async function recargar(){
+    window.location.reload()
+}
+// async function eliminarAnime(id){
+//     try{
+//         const response = await fetch(`temas/eliminar/${id}`,{
+//             method: 'DELETE',
+//             headers: {
+//                 ''
+//             }
+//         })
+            
+//     }catch(error){
+//         console.log('Error al eliminar el anime', error)
+//     }
+// }
+
 async function editarAnime(id){
     try {
-        const response = await fetch(`/temas/actualizar/${id}`, {
-            method: 'PUT', 
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: document.getElementById('')
-        });
-        const temas = await response.json();
-       
+        const boton = document.getElementById('editar-anime')
+        const formulario = document.getElementById('actualizar-form')
+        boton.addEventListener('click',() => {
+            if (formulario.type === 'none'){
+                formulario.style.display = 'block';
+            }
+            
+        })
     }catch (error){
-        console.error('Error al sumar el voto', error)
+        console.error('Error al editar el anime', error)
     }
 }
+
 
 function mostrarTemas(temas){
     const tabla = document.getElementById('tabla-temas');
@@ -48,8 +67,8 @@ function mostrarTemas(temas){
         <td>${tema.tema}</td>
         <td><a href="${tema.enlace}" target="_blank">${tema.enlace}</a></td>
         <td>${tema.votos}</td>
-        <td><BUTTON onclick="sumarVotos(${tema.id})">+</BUTTON></td>
-        <td><BUTTON onclick="editarAnime(${tema.id})">Editar</BUTTON></td>
+        <td><BUTTON onclick="sumarVotos(${tema.id});recargar();">+</BUTTON></td>
+        <td><BUTTON id="editar-anime" onclick="editarAnime(${tema.id})">Editar</BUTTON></td>
         <td><BUTTON onclick="eliminarAnime(${tema.id})">Eliminar</BUTTON></td>
         `;
         tabla.appendChild(fila);

@@ -144,7 +144,10 @@ class TemasControlador{
                 data: { votos: votosActualizados }
             });
             
+            
+            
             res.json({ id: temaActualizado.id, votos: temaActualizado.votos });
+            
             console.log({ msg: 'Voto agregado con éxito', tema: temaActualizado });
         } catch (error) {
             res.status(500).json({ error: 'Error al actualizar los votos', details: error.message });

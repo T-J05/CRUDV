@@ -13,27 +13,29 @@
   <form action="/temas/crear" method="post">
     <label for="tema">
       Titulo del anime
-      <input type="text" id="tema" name="tema" placeholder="escriba el anime"/>
+      <input type="text" id="tema" name="tema" placeholder="escriba el anime" required>
     </label>
     <label for="enlace">
       Enlace
-      <input type="text" id="enlace" name="enlace" placeholder="escriba el enlace">
+      <input type="text" id="enlace" name="enlace" placeholder="escriba el enlace" required>
     </label>
     <button type="submit">Agregar</button>
   </form>
+
   <!-- se hace un formulario al apretar el boton de editar -->
-  <form action="/temas/actualizar" method="post">
+  <form id="actualizar-form">
     <label for="tema">
-      Titulo del anime
-      <input type=”hidden” id="tema" name="tema" placeholder="escriba el anime"/>
+      Editar anime
+      <input type="hidden" id="tema" name="tema" placeholder="escriba el anime"/>
     </label>
     <label for="enlace">
       Enlace
-      <input type=”hidden” id="enlace" name="enlace" placeholder="escriba el enlace">
+      <input type="hidden" id="enlace" name="enlace" placeholder="escriba el enlace">
     </label>
     <button type="submit">Agregar</button>
   </form>
  </center>
+
   <center><table id="tabla-temas">
     <thead>
         <tr>
