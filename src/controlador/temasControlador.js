@@ -99,13 +99,12 @@ class TemasControlador{
             where : {id: parseInt(id)},
             data: {
                 tema: tema.trim(),
-                enlace: enlace.trim(),
-                votos: votos || 0
+                enlace: enlace.trim()
             }
             });
             res.status(201).json({msg: 'Tema actualizado con éxito', tema: temanew})
         }catch(error){
-            res.status(500).json({error:'Error al crear el tema', details: error.message})
+            res.status(500).json({error:'Error al actualizar el tema', details: error.message})
         }
     
     }
