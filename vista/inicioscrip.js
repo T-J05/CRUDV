@@ -17,10 +17,20 @@ async function sumarVotos(id){
             }
             
         }
-        );
-        const temas = await response.json();
+        );if (response.ok) {
+            const temaActualizado = await response.json();
+            actualizarVotosUI(id, temaActualizado.votos);
+        obtenerTemas()}
     }catch (error){
         console.error('Error al sumar el voto', error)
+    }
+}
+
+function actualizarVotosUI(id, votosActualizados) {
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    if (fila) {
+        const votosCelda = fila.querySelector('.votos');
+        votosCelda.textContent = votosActualizados;
     }
 }
 
@@ -37,10 +47,18 @@ async function eliminarAnime(id){
                  'Content-Type': 'application/json'
             }
         })
-        recargar()
+        eliminarAnimeUI(id)
         console.log(`Anime ${response}eliminado`)
     }catch(error){
         console.log('Error al eliminar el anime', error)
+    }
+}
+
+
+function eliminarAnimeUI(id) {
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    if (fila) {
+        fila.remove();
     }
 }
 
@@ -88,12 +106,13 @@ function mostrarTemas(temas){
     tabla.innerHTML = '';
     temas.forEach((tema,index ) => {
         const fila = document.createElement('tr');
+        fila.setAttribute('data-id', tema.id);
         fila.innerHTML = `
         <td>${index + 1}</td>
         <td>${tema.tema}</td>
         <td><a href="${tema.enlace}" target="_blank">${tema.enlace}</a></td>
-        <td>${tema.votos}</td>
-        <td><BUTTON onclick="sumarVotos(${tema.id});recargar();">+</BUTTON></td>
+        <td class="votos">${tema.votos}</td>
+        <td><BUTTON onclick="sumarVotos(${tema.id})">+</BUTTON></td>
       <td><button onclick="mostrarFormulario(${tema.id}, '${tema.tema}', '${tema.enlace}','${tema.votos}')">Editar</button></td>
         <td><BUTTON onclick="eliminarAnime(${tema.id})">Eliminar</BUTTON></td>
         `;
