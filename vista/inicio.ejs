@@ -23,16 +23,18 @@
   </form>
 
   <!-- se hace un formulario al apretar el boton de editar -->
-  <form id="actualizar-form">
+  <form id="actualizar-form" style="display: none;">
     <label for="tema">
       Editar anime
-      <input type="hidden" id="tema" name="tema" placeholder="escriba el anime"/>
+      <input type="text" id="tema1" name="tema1" placeholder="Escriba el anime"/>
     </label>
     <label for="enlace">
       Enlace
-      <input type="hidden" id="enlace" name="enlace" placeholder="escriba el enlace">
+      <input type="text" id="enlace1" name="enlace1" placeholder="Escriba el enlace">
     </label>
-    <button type="submit">Agregar</button>
+    <input type="hidden" id="tema-id">
+    <input type="hidden" id="votos-id">
+    <button type="button" onclick="guardarCambios()">Guardar cambios</button>
   </form>
  </center>
 
