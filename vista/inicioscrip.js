@@ -27,19 +27,19 @@ async function sumarVotos(id){
 async function recargar(){
     window.location.reload()
 }
-// async function eliminarAnime(id){
-//     try{
-//         const response = await fetch(`temas/eliminar/${id}`,{
-//             method: 'DELETE',
-//             headers: {
-//                 ''
-//             }
-//         })
-            
-//     }catch(error){
-//         console.log('Error al eliminar el anime', error)
-//     }
-// }
+    // async function eliminarAnime(id){
+    //     try{
+    //         const response = await fetch(`temas/eliminar/${id}`,{
+    //             method: 'DELETE',
+    //             headers: {
+    //                 ''
+    //             }
+    //         })
+                
+    //     }catch(error){
+    //         console.log('Error al eliminar el anime', error)
+    //     }
+    // }
 
 async function editarAnime(id){
     try {
